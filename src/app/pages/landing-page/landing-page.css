@@ -1,0 +1,53 @@
+.video-background {
+  position: sticky;
+  top: 0;
+  height: 110vh;
+}
+
+.video-background-iframe {
+  width: 195.5vh;
+  height: 110vh;
+  min-width: 100vw;
+  min-height: 56.25vw;
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header-message-container {
+  position: absolute;
+  text-align: center;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.header-message {
+  background: #ffffffe6;
+  border-radius: 10px;
+  padding: 32px;
+  color: #000;
+  top: 45%;
+  transform: translateY(-50%);
+}
+
+.page-wrapper {
+  overflow: hidden;
+}
+
+#nav {
+  color: #000;
+  background: #fff;
+  font-weight: 500;
+  position: unset;
+}
+
+#header {
+  height: 200vh;
+  position: relative;
+}
+
+@media screen and (max-width: 1280px) {
+
+}
