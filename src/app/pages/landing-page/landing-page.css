@@ -30,10 +30,25 @@
   color: #000;
   top: 45%;
   transform: translateY(-50%);
+  font-weight: 600;
+}
+
+.header-small-message {
+  margin: 1em 0 0;
 }
 
 .page-wrapper {
   overflow: hidden;
+}
+
+@supports (animation-timeline: view()) {
+  .fade-on-top {
+    animation: fadeOut linear forwards;
+    animation-duration: 1s;
+    animation-range: entry 10% exit 10%;
+    animation-timeline: view();
+    opacity: 1;
+  }
 }
 
 #nav {
@@ -44,10 +59,15 @@
 }
 
 #header {
-  height: 200vh;
+  height: 175vh;
   position: relative;
 }
 
-@media screen and (max-width: 1280px) {
-
+@keyframes fadeOut {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

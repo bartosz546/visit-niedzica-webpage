@@ -112,7 +112,6 @@ input, textarea, select {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 400;
   color: #483949;
   line-height: 1.25em;
 }
@@ -2170,7 +2169,6 @@ header .icon.circled {
 
 #header header > p {
   font-size: 1.25em;
-  margin: 0;
 }
 
 #header h1 {
@@ -2677,18 +2675,6 @@ body.homepage.is-preload #header:after {
 
 #navPanel, #titleBar {
   display: none;
-}
-
-.fade-on-top {
-  animation: fadeOut linear forwards;
-  animation-timeline: view();
-  animation-range: entry 100% exit 20%;
-  opacity: 1;
-}
-
-@keyframes fadeOut {
-  0%, 90% { opacity: 1; }
-  100%    { opacity: 0; }
 }
 
 @media screen and (max-width: 736px) {
