@@ -1,0 +1,23 @@
+#nav {
+  color: #000;
+  background: #fff;
+  font-weight: 500;
+  padding-left: clamp(1rem, 4vw, 5rem);
+  padding-right: clamp(1rem, 4vw, 5rem);
+}
+
+.page-wrapper {
+  overflow: hidden;
+}
+
+.inline-header-logo-container {
+  float: left;
+  font-weight: 600;
+  text-transform: capitalize;
+  font-size: 2em;
+}
+
+.inline-header-logo {
+  height: 1em;
+  vertical-align: middle;
+}

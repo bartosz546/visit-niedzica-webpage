@@ -1,18 +1,19 @@
 .video-background {
   position: sticky;
-  top: 0;
+  top: -1px;
   height: 110vh;
+  overflow: hidden;
 }
 
-.video-background-iframe {
+.landing-page-parallax-background {
   width: 195.5vh;
   height: 110vh;
   min-width: 100vw;
-  min-height: 56.25vw;
   pointer-events: none;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  background: black;
 }
 
 .header-message-container {
@@ -20,11 +21,11 @@
   text-align: center;
   top: 0;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
 
 .header-message {
-  background: #ffffffe6;
+  background: #fffffff0;
   border-radius: 10px;
   padding: 32px;
   color: #000;
@@ -37,8 +38,17 @@
   margin: 1em 0 0;
 }
 
-.page-wrapper {
-  overflow: hidden;
+.fade-layer {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 500ms ease;
+}
+
+.fade-layer.visible {
+  opacity: 1;
 }
 
 @supports (animation-timeline: view()) {
@@ -51,16 +61,25 @@
   }
 }
 
-#nav {
-  color: #000;
-  background: #fff;
-  font-weight: 500;
-  position: unset;
-}
-
 #header {
   height: 175vh;
   position: relative;
+}
+
+#big-image-section {
+  height: 175vh;
+  position: relative;
+}
+
+#big-image-section {
+  .header-message {
+      font-size: 2.5em;
+  }
+
+  .header-small-message {
+    font-size: 1.5em;
+    font-weight: normal;
+  }
 }
 
 @keyframes fadeOut {
