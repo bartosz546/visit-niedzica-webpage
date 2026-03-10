@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MapNode } from './map-item.model';
 import { MapComponent, MarkerComponent } from 'ngx-mapbox-gl';
 import { CommonModule } from '@angular/common';
@@ -9,16 +9,15 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./map-view.css'],
   imports: [MarkerComponent, MapComponent, CommonModule],
 })
-export class MapViewComponent implements OnInit {
-  // Map state
-  public mapCenter: [number, number] = [-70.53, 19.31]; // Default center
+export class MapViewComponent implements OnInit, AfterViewInit {
+  @ViewChild('mapComponent') mapComponent!: MapComponent;
+
+  public mapCenter: [number, number] = [-70.53, 19.31];
   public mapZoom: [number] = [9];
 
-  // Data state
   public selectedNodeId: string | null = null;
   public visibleMarkers: MapNode[] = [];
 
-  // Mock Hierarchical Data
   public mapData: MapNode[] = [
     {
       id: '1',
@@ -57,28 +56,71 @@ export class MapViewComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    // Initially, let's show all top-level nodes, or everything.
-    // For this example, we'll start by showing all items flattened.
     this.visibleMarkers = this.getAllNodesFlattened(this.mapData);
   }
 
-  /**
-   * Triggered when an item in the left panel is clicked.
-   */
-  public selectNode(node: MapNode, event: Event): void {
-    event.stopPropagation(); // Prevent clicks from bubbling up to parent nodes
-
-    this.selectedNodeId = node.id;
-    this.mapCenter = [...node.lngLat]; // Update map center
-    this.mapZoom = [12]; // Zoom in closer on selection
-
-    // Filter markers to ONLY show the selected node and its descendants
-    this.visibleMarkers = this.getDescendantsFlattened(node);
+  onMapLoad(event: any) {
+    this.refreshMapSize();
   }
 
-  /**
-   * Recursively flattens a node and all its children into a single array
-   */
+  ngAfterViewInit(): void {
+    this.refreshMapSize();
+  }
+
+  public detailNode: MapNode | null = null;
+
+  public onMarkerClick(node: MapNode): void {
+    // 1. Center map and filter markers like before
+    this.selectNode(node, new MouseEvent('click'));
+
+    // 2. Logic for detail view vs expansion
+    if (!node.children || node.children.length === 0) {
+      this.detailNode = node;
+    } else {
+      // It has children, so ensure it is expanded in the sidebar
+      node.isExpanded = true;
+      this.detailNode = null; // Close detail view if it was open
+    }
+  }
+
+  public closeDetail(): void {
+    this.detailNode = null;
+  }
+
+  public trackById(index: number, item: MapNode): string {
+    return item.id;
+  }
+
+  refreshMapSize(): void {
+    setTimeout(() => {
+      if (this.mapComponent && this.mapComponent.mapInstance) {
+        this.mapComponent.mapInstance.resize();
+      }
+    });
+    console.log('mapComponent', this.mapComponent);
+    console.log('mapInstance', this.mapComponent.mapInstance);
+    (window as any).mapComponent = this.mapComponent;
+  }
+
+  public selectNode(node: MapNode, event: Event): void {
+    event.stopPropagation();
+
+    // Toggle the expanded state for the accordion effect
+    node.isExpanded = !node.isExpanded;
+
+    this.selectedNodeId = node.id;
+    this.mapCenter = [...node.lngLat];
+    this.mapZoom = [12];
+
+    // Show only this element and its children on the map
+    this.visibleMarkers = this.getDescendantsFlattened(node);
+
+    // After the DOM updates (the sidebar grows/shrinks), trigger the map resize
+    setTimeout(() => {
+      this.refreshMapSize();
+    }, 300); // Wait for the CSS transition to finish
+  }
+
   private getDescendantsFlattened(node: MapNode): MapNode[] {
     let result: MapNode[] = [node];
     if (node.children && node.children.length > 0) {
@@ -89,9 +131,6 @@ export class MapViewComponent implements OnInit {
     return result;
   }
 
-  /**
-   * Recursively flattens the entire data tree (used for initial load)
-   */
   private getAllNodesFlattened(nodes: MapNode[]): MapNode[] {
     let result: MapNode[] = [];
     nodes.forEach((node) => {

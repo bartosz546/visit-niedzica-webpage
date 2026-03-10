@@ -7,17 +7,23 @@
 
     <ng-template #nodeTemplate let-nodes>
       <div class="node-list">
-        <div class="node-item" *ngFor="let node of nodes">
+        <div class="node-item" *ngFor="let node of nodes; trackBy: trackById">
 
           <div
             class="node-content"
             [class.active]="selectedNodeId === node.id"
             (click)="selectNode(node, $event)">
-            <h3>{{ node.title }}</h3>
+
+            <div class="header-row">
+          <span class="arrow" *ngIf="node.children?.length" [class.rotated]="node.isExpanded">
+            ▶
+          </span>
+              <h3>{{ node.title }}</h3>
+            </div>
             <p>{{ node.description }}</p>
           </div>
 
-          <div class="node-children" *ngIf="node.children && node.children.length > 0">
+          <div class="node-children" *ngIf="node.children?.length && node.isExpanded">
             <ng-container *ngTemplateOutlet="nodeTemplate; context: { $implicit: node.children }"></ng-container>
           </div>
 
@@ -28,15 +34,17 @@
 
   <div class="map-container">
     <mgl-map
+      #mapComponent
       [style]="'mapbox://styles/mapbox/streets-v12'"
       [zoom]="mapZoom"
       [center]="mapCenter"
-      [pitch]="[45]">
+      (load)="onMapLoad($event)"
+      [pitch]="[0]">
 
       <mgl-marker *ngFor="let marker of visibleMarkers" [lngLat]="marker.lngLat">
         <div class="custom-marker">
           <div class="marker-dot"></div>
-          <span class="marker-label">{{ marker.title }}</span>
+<!--          <span class="marker-label">{{ marker.title }}</span>-->
         </div>
       </mgl-marker>
 
