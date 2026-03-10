@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostListener, signal } from '@angular/core';
+import { AfterViewInit, Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ export class App implements AfterViewInit {
   private elementHeight = 0;
 
   ngAfterViewInit(): void {
-    this.elementHeight = document.getElementById("nav")?.offsetHeight ?? 0;
+    this.elementHeight = document.getElementById('nav')?.offsetHeight ?? 0;
   }
 
   @HostListener('window:scroll')

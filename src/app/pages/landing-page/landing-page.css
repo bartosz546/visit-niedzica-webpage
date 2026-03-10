@@ -61,7 +61,7 @@
   }
 }
 
-#header {
+.header {
   height: 175vh;
   position: relative;
 }
