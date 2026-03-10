@@ -157,6 +157,7 @@ a {
 
 a:hover {
   color: rgb(47, 105, 70);
+  font-weight: 600;
   border-bottom-color: transparent;
 }
 
@@ -2057,7 +2058,7 @@ input[type="reset"]:hover,
 button:hover,
 .button:hover {
   color: #fff;
-  background: #ef8376;
+  background: rgb(47, 105, 70);
 }
 
 input[type="button"].alt,
@@ -2266,7 +2267,8 @@ body.homepage .header h1 {
 }
 
 .dropotron li:hover {
-  color: #ef8376;
+  color: rgb(47, 105, 70);
+  font-weight: 600;
 }
 
 .dropotron li a, .dropotron li span {

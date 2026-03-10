@@ -6,4 +6,5 @@ export const routes: Routes = [
     path: '',
     component: LandingPage,
   },
+  { path: '**', redirectTo: '' },
 ];
