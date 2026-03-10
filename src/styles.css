@@ -156,7 +156,7 @@ a {
 }
 
 a:hover {
-  color: #ef8376;
+  color: rgb(47, 105, 70);
   border-bottom-color: transparent;
 }
 
@@ -1892,7 +1892,7 @@ ul.icons {
   border-radius: 4em;
   display: inline-block;
   padding: 0.35em 0.75em 0.35em 0.75em;
-  font-size: 1.25em;
+  font-size: 1.5em;
   cursor: default;
   list-style: none;
 }
@@ -1915,7 +1915,7 @@ ul.icons li a {
 }
 
 ul.icons li a:hover {
-  color: #ef8376;
+  color: #fff;
 }
 
 /* Form */
@@ -2109,10 +2109,6 @@ button.alt:hover,
 .icon:before {
   line-height: inherit;
   font-size: 1.25em;
-}
-
-.icon > .label {
-  display: none;
 }
 
 .icon.solid:before {
@@ -2353,7 +2349,7 @@ body.homepage .header h1 {
 #footer {
   position: relative;
   overflow: hidden;
-  padding: 6em 0 6em 0;
+  padding: 5em 0 5em 0;
   background: #1F3D2B;
   color: #fff;
 }
@@ -2374,6 +2370,7 @@ body.homepage .header h1 {
 
 #footer .contact {
   text-align: center;
+  font-size: 1em;
 }
 
 #footer .contact p {

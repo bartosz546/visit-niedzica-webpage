@@ -1,9 +1,11 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Utils } from '../../Utils';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-landing-page',
-  imports: [],
+  imports: [FontAwesomeModule],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })
@@ -29,7 +31,7 @@ export class LandingPage implements AfterViewInit {
   }
 
   private async playVideo(video: HTMLVideoElement) {
-    if(this.currentVideoIndex >= 0) {
+    if (this.currentVideoIndex >= 0) {
       await this.fadeToBlack();
     }
     this.currentVideoIndex = (this.currentVideoIndex + 1) % this.videos.length;
@@ -65,4 +67,8 @@ export class LandingPage implements AfterViewInit {
       setTimeout(resolve, this.fadeTransitionTime);
     });
   }
+
+  faFacebook = faFacebook;
+  faInstagram = faInstagram;
+  faYoutube = faYoutube;
 }
