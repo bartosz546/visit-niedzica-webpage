@@ -1,7 +1,15 @@
 import { AfterViewInit, Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { MAPBOX_API_KEY } from 'ngx-mapbox-gl';
 
 @Component({
+  providers: [
+    {
+      provide: MAPBOX_API_KEY,
+      useValue:
+        'pk.eyJ1IjoiYmFydG9zejU0NiIsImEiOiJjbW1sMWRkZnQxd3V3MnBwcmVyMGhrNjNoIn0.-4CCQmDdgUYVK3kFfwaCJQ',
+    },
+  ],
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.html',

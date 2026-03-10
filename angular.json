@@ -30,7 +30,10 @@
                 "output": "assets"
               }
             ],
-            "styles": ["src/styles.css"],
+            "styles": [
+              "src/styles.css",
+              "node_modules/mapbox-gl/dist/mapbox-gl.css"
+            ],
             "externalDependencies": ["images/arrow.svg", "images/header.jpg"]
           },
           "configurations": {
