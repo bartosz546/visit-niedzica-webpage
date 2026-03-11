@@ -66,22 +66,6 @@
   position: relative;
 }
 
-#big-image-section {
-  height: 175vh;
-  position: relative;
-}
-
-#big-image-section {
-  .header-message {
-      font-size: 2.5em;
-  }
-
-  .header-small-message {
-    font-size: 1.5em;
-    font-weight: normal;
-  }
-}
-
 @keyframes fadeOut {
   0%, 80% {
     opacity: 1;

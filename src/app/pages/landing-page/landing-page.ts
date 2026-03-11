@@ -1,9 +1,12 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Utils } from '../../Utils';
+import {
+  ParallaxImageScrollSection
+} from '../../component/parallax-image-scroll-section/parallax-image-scroll-section';
 
 @Component({
   selector: 'app-landing-page',
-  imports: [],
+  imports: [ParallaxImageScrollSection],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })
