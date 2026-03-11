@@ -2513,11 +2513,23 @@ body.homepage .header h1 {
   text-align: center;
 }
 
-/* Wide */
+.mapboxgl-ctrl-attrib-inner {
+  display: none;
+}
+
+.mapboxgl-ctrl-bottom-left {
+  top: 0;
+  right: 0;
+  left: unset !important;
+}
+
+.mapboxgl-ctrl-logo {
+  border: none;
+  margin: 10px;
+}
 
 @media screen and (max-width: 1680px) {
 
-  /* Basic */
   body, input, textarea, select {
     font-size: 14pt;
     line-height: 1.75em;

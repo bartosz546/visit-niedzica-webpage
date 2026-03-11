@@ -64,3 +64,6 @@ Generated with ChatGPT AI
 
 Big Banner image From 3 Korony
 Karol Nienartowicz - rights 
+
+Couple going on the trip panorama
+Generated with ChatGPT AI

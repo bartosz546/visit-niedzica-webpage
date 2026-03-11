@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MapNode } from './map-item.model';
 import { MapComponent, MarkerComponent } from 'ngx-mapbox-gl';
 import { CommonModule } from '@angular/common';
+import { LngLatBounds } from 'mapbox-gl';
 
 @Component({
   selector: 'app-map-view',
@@ -12,8 +13,8 @@ import { CommonModule } from '@angular/common';
 export class MapViewComponent implements OnInit, AfterViewInit {
   @ViewChild('mapComponent') mapComponent!: MapComponent;
 
-  public mapCenter: [number, number] = [-70.53, 19.31];
-  public mapZoom: [number] = [9];
+  public mapCenter: [number, number] = [20.3228, 49.4182];
+  public mapZoom: [number] = [11];
 
   public selectedNodeId: string | null = null;
   public visibleMarkers: MapNode[] = [];
@@ -70,17 +71,7 @@ export class MapViewComponent implements OnInit, AfterViewInit {
   public detailNode: MapNode | null = null;
 
   public onMarkerClick(node: MapNode): void {
-    // 1. Center map and filter markers like before
     this.selectNode(node, new MouseEvent('click'));
-
-    // 2. Logic for detail view vs expansion
-    if (!node.children || node.children.length === 0) {
-      this.detailNode = node;
-    } else {
-      // It has children, so ensure it is expanded in the sidebar
-      node.isExpanded = true;
-      this.detailNode = null; // Close detail view if it was open
-    }
   }
 
   public closeDetail(): void {
@@ -102,23 +93,38 @@ export class MapViewComponent implements OnInit, AfterViewInit {
     (window as any).mapComponent = this.mapComponent;
   }
 
-  public selectNode(node: MapNode, event: Event): void {
-    event.stopPropagation();
+  public selectNode(node: MapNode, event?: Event): void {
+    if (event) event.stopPropagation();
 
-    // Toggle the expanded state for the accordion effect
     node.isExpanded = !node.isExpanded;
-
     this.selectedNodeId = node.id;
-    this.mapCenter = [...node.lngLat];
-    this.mapZoom = [12];
 
-    // Show only this element and its children on the map
-    this.visibleMarkers = this.getDescendantsFlattened(node);
+    const descendants = this.getDescendantsFlattened(node);
+    this.visibleMarkers = descendants;
 
-    // After the DOM updates (the sidebar grows/shrinks), trigger the map resize
+    if (descendants.length > 0) {
+      const bounds = new LngLatBounds();
+      descendants.forEach((marker) => bounds.extend(marker.lngLat));
+
+      const map = this.mapComponent?.mapInstance;
+      if (map && node.isExpanded) {
+        map.fitBounds(bounds, {
+          padding: 60,
+          maxZoom: 15,
+          duration: 2000,
+        });
+      }
+    }
+
+    if (!node.children || node.children.length === 0) {
+      this.detailNode = node;
+    } else {
+      this.detailNode = null;
+    }
+
     setTimeout(() => {
       this.refreshMapSize();
-    }, 300); // Wait for the CSS transition to finish
+    }, 300);
   }
 
   private getDescendantsFlattened(node: MapNode): MapNode[] {

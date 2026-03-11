@@ -1,35 +1,30 @@
+<div class="map-header">
+  <header>
+    <h2>
+      <strong>
+        Mapa Pienin
+      </strong>
+    </h2>
+  </header>
+</div>
+
 <div class="master-detail-layout">
 
-  <div class="sidebar">
-    <h2>Locations</h2>
+  <div class="sidebar-container">
+    <div class="sidebar">
+      <ng-container *ngTemplateOutlet="nodeTemplate; context: { $implicit: mapData }"></ng-container>
+    </div>
 
-    <ng-container *ngTemplateOutlet="nodeTemplate; context: { $implicit: mapData }"></ng-container>
-
-    <ng-template #nodeTemplate let-nodes>
-      <div class="node-list">
-        <div class="node-item" *ngFor="let node of nodes; trackBy: trackById">
-
-          <div
-            class="node-content"
-            [class.active]="selectedNodeId === node.id"
-            (click)="selectNode(node, $event)">
-
-            <div class="header-row">
-          <span class="arrow" *ngIf="node.children?.length" [class.rotated]="node.isExpanded">
-            ▶
-          </span>
-              <h3>{{ node.title }}</h3>
-            </div>
-            <p>{{ node.description }}</p>
-          </div>
-
-          <div class="node-children" *ngIf="node.children?.length && node.isExpanded">
-            <ng-container *ngTemplateOutlet="nodeTemplate; context: { $implicit: node.children }"></ng-container>
-          </div>
-
+    <div class="details-page" *ngIf="detailNode">
+      <button class="close-btn" (click)="closeDetail()">✕ Back to List</button>
+      <div class="details-content">
+        <h1>{{ detailNode.title }}</h1>
+        <p class="description">{{ detailNode.description }}</p>
+        <div class="meta-info">
+          <strong>Location:</strong> {{ detailNode.lngLat[1] }}°N, {{ detailNode.lngLat[0] }}°W
         </div>
       </div>
-    </ng-template>
+    </div>
   </div>
 
   <div class="map-container">
@@ -41,13 +36,42 @@
       (load)="onMapLoad($event)"
       [pitch]="[0]">
 
-      <mgl-marker *ngFor="let marker of visibleMarkers" [lngLat]="marker.lngLat">
-        <div class="custom-marker">
+      <mgl-marker
+        *ngFor="let marker of visibleMarkers"
+        [lngLat]="marker.lngLat">
+        <div class="custom-marker"
+             (click)="onMarkerClick(marker)">
           <div class="marker-dot"></div>
-<!--          <span class="marker-label">{{ marker.title }}</span>-->
+          <!--          <span class="marker-label">{{ marker.title }}</span>-->
         </div>
       </mgl-marker>
 
     </mgl-map>
   </div>
 </div>
+
+<ng-template #nodeTemplate let-nodes>
+  <div class="node-list">
+    <div class="node-item" *ngFor="let node of nodes; trackBy: trackById">
+
+      <div
+        class="node-content"
+        [class.active]="selectedNodeId === node.id"
+        (click)="selectNode(node, $event)">
+
+        <div class="header-row">
+          <span class="arrow" *ngIf="node.children?.length" [class.rotated]="node.isExpanded">
+            ▶
+          </span>
+          <h3>{{ node.title }}</h3>
+        </div>
+<!--        <p>{{ node.description | slice:0:40 }}...</p>-->
+      </div>
+
+      <div class="node-children" *ngIf="node.children?.length && node.isExpanded">
+        <ng-container *ngTemplateOutlet="nodeTemplate; context: { $implicit: node.children }"></ng-container>
+      </div>
+
+    </div>
+  </div>
+</ng-template>

@@ -4,6 +4,7 @@
   font-weight: 500;
   padding-left: clamp(1rem, 4vw, 5rem);
   padding-right: clamp(1rem, 4vw, 5rem);
+  z-index: 10;
 }
 
 .page-wrapper {
@@ -20,4 +21,12 @@
 .inline-header-logo {
   height: 1em;
   vertical-align: middle;
+}
+
+.social-media-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2em;
+  flex-direction: column;
 }

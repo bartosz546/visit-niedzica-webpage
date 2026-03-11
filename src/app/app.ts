@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MAPBOX_API_KEY } from 'ngx-mapbox-gl';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   providers: [
@@ -11,7 +13,7 @@ import { MAPBOX_API_KEY } from 'ngx-mapbox-gl';
     },
   ],
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, FontAwesomeModule],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -51,4 +53,8 @@ export class App implements AfterViewInit {
 
     this.lastScrollTop = scrollTop;
   }
+
+  faFacebook = faFacebook;
+  faInstagram = faInstagram;
+  faYoutube = faYoutube;
 }
