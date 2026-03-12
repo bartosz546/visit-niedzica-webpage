@@ -18,12 +18,9 @@
     <div class="details-page" *ngIf="detailNode">
       <button class="close-btn" (click)="closeDetail()"><fa-icon [icon]="faChevronLeft" />Powrót</button>
       <div class="details-content">
-        <img class="detail-image" [ngSrc]="detailNode.imgSrc ?? ''" alt=""/>
-        <h1>{{ detailNode.title }}</h1>
+        <img class="detail-image" [src]="detailNode.imgSrc ?? ''" alt=""/>
+        <h1 class="detail-header">{{ detailNode.title }}</h1>
         <p class="description">{{ detailNode.description }}</p>
-        <div class="meta-info" *ngIf="!!detailNode.lngLat">
-          <strong>Location:</strong> {{ detailNode.lngLat?[1] : '' }}°N, {{ detailNode.lngLat?[0] : '' }}°W
-        </div>
       </div>
     </div>
   </div>

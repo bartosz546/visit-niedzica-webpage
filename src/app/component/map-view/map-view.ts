@@ -1,11 +1,10 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MapComponent, MarkerComponent } from 'ngx-mapbox-gl';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { LngLatBounds } from 'mapbox-gl';
 import { MapNode } from './MapNode';
 import { FilterNoLngLat } from './FilterNoLngLat';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -18,7 +17,6 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
     CommonModule,
     FilterNoLngLat,
     FaIconComponent,
-    NgOptimizedImage,
   ],
 })
 export class MapViewComponent implements OnInit, AfterViewInit {

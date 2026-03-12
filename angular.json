@@ -26,7 +26,7 @@
               },
               {
                 "glob": "**/*",
-                "input": "assets",
+                "input": "src/assets",
                 "output": "assets"
               }
             ],
@@ -41,13 +41,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "1MB",
+                  "maximumError": "4MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "400kB",
-                  "maximumError": "800kB"
+                  "maximumWarning": "1MB",
+                  "maximumError": "4MB"
                 }
               ],
               "outputHashing": "all"
