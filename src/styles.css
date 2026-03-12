@@ -2036,16 +2036,15 @@ button,
 .button {
   position: relative;
   display: inline-block;
-  background: #df7366;
+  background: rgb(47, 105, 70);
   color: #fff;
   text-align: center;
   border-radius: 0.5em;
   text-decoration: none;
-  padding: 0.65em 3em 0.65em 3em;
+  padding: 0.8em 1.5em 0.8em 1.5em;
   border: 0;
   cursor: pointer;
   outline: 0;
-  font-weight: 300;
   -moz-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
   -webkit-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
   -ms-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
@@ -2058,7 +2057,7 @@ input[type="reset"]:hover,
 button:hover,
 .button:hover {
   color: #fff;
-  background: rgb(47, 105, 70);
+  background: #3a7d5a;
 }
 
 input[type="button"].alt,

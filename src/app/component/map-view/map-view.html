@@ -21,6 +21,9 @@
         <img class="detail-image" [src]="detailNode.imgSrc ?? ''" alt=""/>
         <h1 class="detail-header">{{ detailNode.title }}</h1>
         <p class="description">{{ detailNode.description }}</p>
+        <button class="details-button" (click)="Utils.navigate(detailNode.detailsLink, router)">
+          Więcej<fa-icon [icon]="faArrowRight" class="button-right-arrow-icon" />
+        </button>
       </div>
     </div>
   </div>
@@ -67,7 +70,6 @@
       <div class="node-children" *ngIf="node.children?.length && node.isExpanded">
         <ng-container *ngTemplateOutlet="nodeTemplate; context: { $implicit: node.children }"></ng-container>
       </div>
-
     </div>
   </div>
 </ng-template>

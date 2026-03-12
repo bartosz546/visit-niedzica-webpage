@@ -5,13 +5,21 @@ import { LngLatBounds } from 'mapbox-gl';
 import { MapNode } from './MapNode';
 import { FilterNoLngLat } from './FilterNoLngLat';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
+import { Utils } from '../../Utils';
 
 @Component({
   selector: 'app-map-view',
   templateUrl: './map-view.html',
   styleUrls: ['./map-view.css'],
-  imports: [MarkerComponent, MapComponent, CommonModule, FilterNoLngLat, FaIconComponent],
+  imports: [
+    MarkerComponent,
+    MapComponent,
+    CommonModule,
+    FilterNoLngLat,
+    FaIconComponent,
+  ],
 })
 export class MapViewComponent implements OnInit, AfterViewInit {
   @ViewChild('mapComponent') mapComponent!: MapComponent;
@@ -21,6 +29,9 @@ export class MapViewComponent implements OnInit, AfterViewInit {
 
   public selectedNodeId: string | null = null;
   public visibleMarkers: MapNode[] = [];
+
+  constructor(public router: Router) {
+  }
 
   ngOnInit(): void {
     this.visibleMarkers = this.getAllNodesFlattened(this.mapData);
@@ -160,4 +171,6 @@ export class MapViewComponent implements OnInit, AfterViewInit {
 
   protected readonly faChevronLeft = faChevronLeft;
   protected readonly faChevronRight = faChevronRight;
+  protected readonly faArrowRight = faArrowRight;
+  protected readonly Utils = Utils;
 }

@@ -143,6 +143,14 @@ mgl-map {
   transform: rotate(90deg);
 }
 
+.button-right-arrow-icon {
+  margin-left: 10px;
+}
+
+.details-button {
+  font-weight: bold;
+}
+
 @keyframes slideDown {
   from {
     opacity: 0;

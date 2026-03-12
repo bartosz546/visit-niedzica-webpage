@@ -31,6 +31,7 @@ export class MapPage {
           description: 'Wspaniałe miejsce na rodzinny camping z widokiem na Pienińskie Szczyty.',
           imgSrc: './assets/images/plaza-pieniny.png',
           lngLat: [20.314810325708784, 49.42419576828662],
+          detailsLink: '#',
         },
         {
           title: 'Kulig',
