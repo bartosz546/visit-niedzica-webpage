@@ -32,6 +32,19 @@ export class MapPage {
           imgSrc: './assets/images/plaza-pieniny.png',
           lngLat: [20.314810325708784, 49.42419576828662],
         },
+        {
+          title: 'Kulig',
+          description:
+            'Kulig to jedna z najbardziej wyjątkowych zimowych atrakcji w górach, która pozwala poczuć prawdziwy klimat góralskiej tradycji. Przejazd saniami ciągniętymi przez konie, wśród ośnieżonych lasów i malowniczych górskich krajobrazów, to niezapomniane przeżycie zarówno dla dorosłych, jak i dla dzieci. Towarzyszące dźwięki dzwonków, zimowe powietrze i blask pochodni tworzą niepowtarzalną atmosferę, która na długo pozostaje w pamięci.',
+          imgSrc: './assets/images/kuligi-niedzica.jpg',
+          lngLat: [20.30233227690118, 49.40523783992745],
+        },
+        {
+          title: 'Kinga Apartamenty',
+          description: 'Klimatyczne miejsce u podnóża Pienińskich Szczytów.',
+          imgSrc: './assets/images/kinga-apartamenty.jpg',
+          lngLat: [20.291499950612497, 49.385955311832085],
+        },
       ],
     },
     {

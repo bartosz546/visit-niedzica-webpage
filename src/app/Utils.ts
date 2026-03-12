@@ -13,14 +13,19 @@ export class Utils {
     });
   }
 
-  public static assignHierarchicalIds(nodes: MapNode[], parentId: string = ''): void {
+  public static assignHierarchicalIds(nodes: MapNode[], parentId: string = '', parentNode?: MapNode): void {
     nodes.forEach((node, index) => {
       const currentId = parentId ? `${parentId}-${index + 1}` : `${index + 1}`;
-
       node.id = currentId;
 
-      if (node.children && node.children.length > 0) {
-        this.assignHierarchicalIds(node.children, currentId);
+      // Link the parent object directly
+      if (parentNode) {
+        node.parent = parentNode;
+      }
+
+      if (node.children?.length) {
+        // Pass 'node' as the parent for the next level
+        this.assignHierarchicalIds(node.children, currentId, node);
       }
     });
   }

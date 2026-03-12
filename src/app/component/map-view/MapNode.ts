@@ -6,5 +6,6 @@ export interface MapNode {
   detailsLink?: string;
   lngLat?: [number, number];
   children?: MapNode[];
-  isExpanded?: boolean; // Add this
+  isExpanded?: boolean;
+  parent?: MapNode;
 }

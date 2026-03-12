@@ -133,9 +133,10 @@ mgl-map {
 }
 
 .arrow {
-  font-size: 10px;
+  font-size: 15px;
   transition: transform 0.2s ease;
-  color: #999;
+  color: #000;
+  font-weight: bold;
 }
 
 .arrow.rotated {

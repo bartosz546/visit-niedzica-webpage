@@ -58,7 +58,7 @@
 
         <div class="header-row">
           <span class="arrow" *ngIf="node.children?.length" [class.rotated]="node.isExpanded">
-            ▶
+            <fa-icon [icon]="faChevronRight" />
           </span>
           <h3>{{ node.title }}</h3>
         </div>

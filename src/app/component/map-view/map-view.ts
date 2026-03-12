@@ -5,7 +5,7 @@ import { LngLatBounds } from 'mapbox-gl';
 import { MapNode } from './MapNode';
 import { FilterNoLngLat } from './FilterNoLngLat';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-map-view',
@@ -42,6 +42,28 @@ export class MapViewComponent implements OnInit, AfterViewInit {
   }
 
   public closeDetail(): void {
+    if (this.detailNode && this.detailNode?.parent) {
+      const descendants = this.getDescendantsFlattened(this.detailNode?.parent);
+      this.visibleMarkers = descendants;
+
+      if (descendants.length > 0) {
+        const bounds = new LngLatBounds();
+        descendants.forEach((marker: MapNode) => {
+          if (marker.lngLat) {
+            bounds.extend(marker.lngLat);
+          }
+        });
+
+        const map = this.mapComponent?.mapInstance;
+        map.fitBounds(bounds, {
+          padding: 60,
+          maxZoom: 15,
+          duration: 2000,
+        });
+      }
+      this.selectedNodeId = this.detailNode?.parent?.id as string;
+    }
+
     this.detailNode = null;
   }
 
@@ -137,4 +159,5 @@ export class MapViewComponent implements OnInit, AfterViewInit {
   }
 
   protected readonly faChevronLeft = faChevronLeft;
+  protected readonly faChevronRight = faChevronRight;
 }
