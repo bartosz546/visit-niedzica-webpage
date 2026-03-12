@@ -11,19 +11,12 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
   selector: 'app-map-view',
   templateUrl: './map-view.html',
   styleUrls: ['./map-view.css'],
-  imports: [
-    MarkerComponent,
-    MapComponent,
-    CommonModule,
-    FilterNoLngLat,
-    FaIconComponent,
-  ],
+  imports: [MarkerComponent, MapComponent, CommonModule, FilterNoLngLat, FaIconComponent],
 })
 export class MapViewComponent implements OnInit, AfterViewInit {
   @ViewChild('mapComponent') mapComponent!: MapComponent;
   @Input() mapData: MapNode[] = [];
 
-  public mapCenter: [number, number] = [20.3228, 49.4182];
   public mapZoom: [number] = [11];
 
   public selectedNodeId: string | null = null;
@@ -39,6 +32,7 @@ export class MapViewComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.refreshMapSize();
+    this.centerMapOnAllPoints();
   }
 
   public detailNode: MapNode | null = null;
@@ -101,6 +95,27 @@ export class MapViewComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.refreshMapSize();
     }, 300);
+  }
+
+  private centerMapOnAllPoints() {
+    const descendants = this.getAllNodesFlattened(this.mapData);
+    if (descendants.length > 0) {
+      const bounds = new LngLatBounds();
+      descendants.forEach((marker: MapNode) => {
+        if (marker.lngLat) {
+          bounds.extend(marker.lngLat);
+        }
+      });
+
+      setTimeout(() => {
+        const map = this.mapComponent?.mapInstance;
+        map.fitBounds(bounds, {
+          padding: 60,
+          maxZoom: 15,
+          duration: 2000,
+        });
+      });
+    }
   }
 
   private getDescendantsFlattened(node: MapNode): MapNode[] {
