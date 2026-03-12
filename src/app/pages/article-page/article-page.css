@@ -1,0 +1,44 @@
+p {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+header {
+  h3 {
+    margin: 1em 0 2em 0;
+  }
+}
+
+
+section {
+  background: #F2F6F3;
+  border-radius: 2em;
+  padding: 1em 2em 2em 2em;
+
+  header {
+    h3 {
+      margin: 1em 0 1em 0;
+    }
+  }
+}
+
+ul {
+  list-style: none;
+  font-size: 1.5em;
+
+  li {
+    padding-bottom: 3px;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  li:hover {
+    text-decoration: none;
+    color: #20b90f;
+  }
+}
