@@ -42,3 +42,12 @@ ul {
     color: #20b90f;
   }
 }
+
+.reveal {
+  opacity: 0;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+}
