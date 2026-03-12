@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { LandingPage } from './pages/landing-page/landing-page';
-import { Map } from './pages/map/map';
+import { MapPage } from './pages/map-page/map-page';
 
 export const routes: Routes = [
   {
@@ -9,7 +9,7 @@ export const routes: Routes = [
   },
   {
     path: 'map',
-    component: Map,
+    component: MapPage,
   },
   { path: '**', redirectTo: '' },
 ];

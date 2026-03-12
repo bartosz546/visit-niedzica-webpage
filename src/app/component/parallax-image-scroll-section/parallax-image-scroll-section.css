@@ -47,3 +47,22 @@
   margin: 1em 0 0;
   font-size: 1em;
 }
+
+@supports (animation-timeline: view()) {
+  .fade-on-top {
+    animation: fadeOut linear forwards;
+    animation-duration: 1s;
+    animation-range: entry 10% exit 10%;
+    animation-timeline: view();
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

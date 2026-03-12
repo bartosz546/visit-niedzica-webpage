@@ -16,12 +16,13 @@
     </div>
 
     <div class="details-page" *ngIf="detailNode">
-      <button class="close-btn" (click)="closeDetail()">✕ Back to List</button>
+      <button class="close-btn" (click)="closeDetail()"><fa-icon [icon]="faChevronLeft" />Powrót</button>
       <div class="details-content">
+        <img class="detail-image" [ngSrc]="detailNode.imgSrc ?? ''" alt=""/>
         <h1>{{ detailNode.title }}</h1>
         <p class="description">{{ detailNode.description }}</p>
-        <div class="meta-info">
-          <strong>Location:</strong> {{ detailNode.lngLat[1] }}°N, {{ detailNode.lngLat[0] }}°W
+        <div class="meta-info" *ngIf="!!detailNode.lngLat">
+          <strong>Location:</strong> {{ detailNode.lngLat?[1] : '' }}°N, {{ detailNode.lngLat?[0] : '' }}°W
         </div>
       </div>
     </div>
@@ -37,7 +38,7 @@
       [pitch]="[0]">
 
       <mgl-marker
-        *ngFor="let marker of visibleMarkers"
+        *ngFor="let marker of visibleMarkers | filterNoLngLat"
         [lngLat]="marker.lngLat">
         <div class="custom-marker"
              (click)="onMarkerClick(marker)">
@@ -65,7 +66,6 @@
           </span>
           <h3>{{ node.title }}</h3>
         </div>
-<!--        <p>{{ node.description | slice:0:40 }}...</p>-->
       </div>
 
       <div class="node-children" *ngIf="node.children?.length && node.isExpanded">

@@ -2525,7 +2525,7 @@ body.homepage .header h1 {
 
 .mapboxgl-ctrl-logo {
   border: none;
-  margin: 10px;
+  margin: 10px !important;
 }
 
 @media screen and (max-width: 1680px) {
@@ -2669,7 +2669,6 @@ body.homepage .header h1 {
     margin: 0 0 1em 0;
   }
 
-  /* Actions */
   form ul.actions {
     margin-top: 0;
   }
@@ -2683,7 +2682,6 @@ body.homepage .header h1 {
     margin-top: 0;
   }
 
-  /* Menu */
   ul.menu {
     height: auto;
     text-align: center;
@@ -2709,7 +2707,6 @@ body.homepage .header h1 {
     width: 2.25em;
   }
 
-  /* Button */
   input[type="button"],
   input[type="submit"],
   input[type="reset"],
@@ -2732,7 +2729,6 @@ body.homepage .header h1 {
     padding: 3em 1em 3em 1em;
   }
 
-  /* Header */
   .header {
     background-attachment: scroll;
     padding: 2.5em 0 0 0;
@@ -2784,7 +2780,6 @@ body.homepage .header h1 {
     padding-right: 1em;
   }
 
-  /* Carousel */
   .carousel {
     padding: 0.5em 0 0.5em 0;
   }
@@ -2802,5 +2797,4 @@ body.homepage .header h1 {
   .carousel article .image {
     margin-bottom: 2em;
   }
-
 }

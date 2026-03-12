@@ -1,60 +1,35 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MapNode } from './map-item.model';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MapComponent, MarkerComponent } from 'ngx-mapbox-gl';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { LngLatBounds } from 'mapbox-gl';
+import { MapNode } from './MapNode';
+import { FilterNoLngLat } from './FilterNoLngLat';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-map-view',
   templateUrl: './map-view.html',
   styleUrls: ['./map-view.css'],
-  imports: [MarkerComponent, MapComponent, CommonModule],
+  imports: [
+    MarkerComponent,
+    MapComponent,
+    CommonModule,
+    FilterNoLngLat,
+    FaIconComponent,
+    NgOptimizedImage,
+  ],
 })
 export class MapViewComponent implements OnInit, AfterViewInit {
   @ViewChild('mapComponent') mapComponent!: MapComponent;
+  @Input() mapData: MapNode[] = [];
 
   public mapCenter: [number, number] = [20.3228, 49.4182];
   public mapZoom: [number] = [11];
 
   public selectedNodeId: string | null = null;
   public visibleMarkers: MapNode[] = [];
-
-  public mapData: MapNode[] = [
-    {
-      id: '1',
-      title: 'Samaná Peninsula',
-      description: 'Beautiful peninsula in the Dominican Republic.',
-      lngLat: [-69.3, 19.25],
-      children: [
-        {
-          id: '1-1',
-          title: 'Las Terrenas',
-          description: 'A vibrant coastal town.',
-          lngLat: [-69.53, 19.31],
-          children: [
-            {
-              id: '1-1-1',
-              title: 'Playa Bonita',
-              description: 'Quiet and scenic beach.',
-              lngLat: [-69.56, 19.3],
-            },
-          ],
-        },
-        {
-          id: '1-2',
-          title: 'El Limón',
-          description: 'Famous for its waterfall.',
-          lngLat: [-69.43, 19.28],
-        },
-      ],
-    },
-    {
-      id: '2',
-      title: 'Santo Domingo',
-      description: 'The capital city.',
-      lngLat: [-69.93, 18.48],
-    },
-  ];
 
   ngOnInit(): void {
     this.visibleMarkers = this.getAllNodesFlattened(this.mapData);
@@ -79,7 +54,7 @@ export class MapViewComponent implements OnInit, AfterViewInit {
   }
 
   public trackById(index: number, item: MapNode): string {
-    return item.id;
+    return item.id as string;
   }
 
   refreshMapSize(): void {
@@ -88,26 +63,29 @@ export class MapViewComponent implements OnInit, AfterViewInit {
         this.mapComponent.mapInstance.resize();
       }
     });
-    console.log('mapComponent', this.mapComponent);
-    console.log('mapInstance', this.mapComponent.mapInstance);
-    (window as any).mapComponent = this.mapComponent;
   }
 
   public selectNode(node: MapNode, event?: Event): void {
-    if (event) event.stopPropagation();
+    if (event) {
+      event.stopPropagation();
+    }
 
     node.isExpanded = !node.isExpanded;
-    this.selectedNodeId = node.id;
+    this.selectedNodeId = node.id as string;
 
     const descendants = this.getDescendantsFlattened(node);
     this.visibleMarkers = descendants;
 
     if (descendants.length > 0) {
       const bounds = new LngLatBounds();
-      descendants.forEach((marker) => bounds.extend(marker.lngLat));
+      descendants.forEach((marker: MapNode) => {
+        if (marker.lngLat) {
+          bounds.extend(marker.lngLat);
+        }
+      });
 
       const map = this.mapComponent?.mapInstance;
-      if (map && node.isExpanded) {
+      if ((map && node.isExpanded) || !node.children?.length) {
         map.fitBounds(bounds, {
           padding: 60,
           maxZoom: 15,
@@ -116,7 +94,7 @@ export class MapViewComponent implements OnInit, AfterViewInit {
       }
     }
 
-    if (!node.children || node.children.length === 0) {
+    if (!node.children || !node.children?.length) {
       this.detailNode = node;
     } else {
       this.detailNode = null;
@@ -144,4 +122,6 @@ export class MapViewComponent implements OnInit, AfterViewInit {
     });
     return result;
   }
+
+  protected readonly faChevronLeft = faChevronLeft;
 }

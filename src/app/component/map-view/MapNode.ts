@@ -1,8 +1,9 @@
 export interface MapNode {
-  id: string;
+  id?: string;
   title: string;
-  description: string;
-  lngLat: [number, number];
+  imgSrc?: string;
+  description?: string;
+  lngLat?: [number, number];
   children?: MapNode[];
   isExpanded?: boolean; // Add this
 }

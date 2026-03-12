@@ -186,17 +186,12 @@ mgl-map {
 
 .close-btn {
   align-self: flex-start;
-  background: #f1f1f1;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 4px;
-  cursor: pointer;
+  background: #ffffff;
+  padding: 8px 8px 15px 0;
   margin-bottom: 20px;
   font-weight: bold;
-}
-
-.close-btn:hover {
-  background: #e0e0e0;
+  color: #000000;
+  font-size: 1em;
 }
 
 .details-content h1 {
@@ -215,6 +210,10 @@ mgl-map {
   margin-top: auto;
   font-size: 0.8rem;
   color: #888;
+}
+
+.detail-image {
+
 }
 
 @keyframes slideIn {
