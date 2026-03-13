@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, HostListener } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { MAPBOX_API_KEY } from 'ngx-mapbox-gl';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
@@ -13,7 +13,7 @@ import { faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg
     },
   ],
   selector: 'app-root',
-  imports: [RouterOutlet, FontAwesomeModule],
+  imports: [RouterOutlet, FontAwesomeModule, RouterLink],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

@@ -5,10 +5,11 @@ import {
 import {
   ParallaxVideoScrollSection
 } from '../../component/parallax-video-scroll-section/parallax-video-scroll-section';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
-  imports: [ParallaxImageScrollSection, ParallaxVideoScrollSection],
+  imports: [ParallaxImageScrollSection, ParallaxVideoScrollSection, RouterLink],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })
