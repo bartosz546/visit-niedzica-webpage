@@ -19,6 +19,8 @@
   font-weight: 600;
   text-transform: capitalize;
   font-size: 1.6em;
+  text-align: left;
+  min-width: 300px;
 }
 
 .inline-header-logo {
@@ -32,4 +34,21 @@
   justify-content: center;
   margin-bottom: 2em;
   flex-direction: column;
+}
+
+.main-menu {
+  color: #000 !important;
+  font-size: 1.4em;
+  justify-content: end;
+}
+
+.main-menu:hover {
+  background: none;
+}
+
+@media screen and (max-width: 736px) {
+  .inline-header-logo-container {
+    font-size: 1.4em;
+    min-width: 260px;
+  }
 }

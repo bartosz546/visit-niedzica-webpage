@@ -3,6 +3,9 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { MAPBOX_API_KEY } from 'ngx-mapbox-gl';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   providers: [
@@ -13,7 +16,14 @@ import { faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg
     },
   ],
   selector: 'app-root',
-  imports: [RouterOutlet, FontAwesomeModule, RouterLink],
+  imports: [
+    RouterOutlet,
+    FontAwesomeModule,
+    RouterLink,
+    MatMenuTrigger,
+    MatMenuModule,
+    MatButtonModule,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -57,4 +67,5 @@ export class App implements AfterViewInit {
   faFacebook = faFacebook;
   faInstagram = faInstagram;
   faYoutube = faYoutube;
+  protected readonly faBars = faBars;
 }

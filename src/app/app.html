@@ -1,15 +1,27 @@
 <div id="page-wrapper">
+
   <nav id="nav">
     <div class="inline-header-logo-container">
       Odwiedź
       <img class="inline-header-logo" src="images/logo-transparent.png" alt="logo" />
       Pieniny
     </div>
-    <ul>
-      <li><a routerLink="#">Strona Główna</a></li>
-      <li><a routerLink="map">Mapa</a></li>
-      <li><a routerLink="article">Zamek Dunajec</a></li>
-    </ul>
+
+    <button class="main-menu" mat-button [matMenuTriggerFor]="mainMenu">
+      <fa-icon [icon]="faBars" />
+    </button>
+
+    <mat-menu #mainMenu="matMenu">
+      <button mat-menu-item routerLink="#">
+        <span>Strona Główna</span>
+      </button>
+      <button mat-menu-item routerLink="/map">
+        <span>Mapa</span>
+      </button>
+      <button mat-menu-item routerLink="/article">
+        <span>Zamek Dunajec</span>
+      </button>
+    </mat-menu>
   </nav>
 
   <router-outlet />

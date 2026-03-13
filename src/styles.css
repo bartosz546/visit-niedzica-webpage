@@ -1,4 +1,21 @@
+@import "@angular/material/prebuilt-themes/purple-green.css";
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,600");
+
+/* -------------- ANGULAR MATERIAL OVERRIDES--------------- */
+
+.mat-mdc-menu-content {
+  background: #fff;
+}
+
+.mat-mdc-menu-item {
+  color: #000 !important;
+}
+
+.mat-mdc-menu-item:not([disabled]):hover {
+  background: #ebebeb !important;
+}
+
+/* -------------- ANGULAR MATERIAL OVERRIDES --------------- */
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -2488,6 +2505,8 @@ body.homepage .header h1 {
   text-align: center;
 }
 
+/* ---------- MAPBOX STYLE OVERRIDES ---------- */
+
 .mapboxgl-ctrl-attrib-inner {
   display: none;
 }
@@ -2502,6 +2521,12 @@ body.homepage .header h1 {
   border: none;
   margin: 10px !important;
 }
+
+.mapboxgl-ctrl-bottom-right {
+  display: none;
+}
+
+/* ---------- END MAPBOX STYLE OVERRIDES ---------- */
 
 @media screen and (max-width: 1680px) {
 
@@ -2589,15 +2614,6 @@ body.homepage .header h1 {
 
 @media screen and (max-width: 736px) {
 
-  html, body {
-    overflow-x: hidden;
-  }
-
-  body, input, textarea, select {
-    font-size: 18px;
-    line-height: 1.5em;
-  }
-
   h2 {
     font-size: 1.75em;
   }
@@ -2611,61 +2627,12 @@ body.homepage .header h1 {
     margin-bottom: 6em;
   }
 
-  section, article {
-    margin-bottom: 2em;
-  }
-
-  section:last-child, article:last-child {
-    margin-bottom: 0;
-  }
-
-  .row > section, .row > article {
-    margin-bottom: 2em;
-  }
-
   header > p {
     font-size: 1.25em;
   }
 
-  .image.featured {
-    margin: 0 0 2em 0;
-  }
-
-  .image.left {
-    margin: 0 1em 1em 0;
-  }
-
-  .image.centered {
-    margin: 0 0 1em 0;
-  }
-
   form ul.actions {
     margin-top: 0;
-  }
-
-  ul.actions li {
-    display: block;
-    margin: 0.75em 0 0 0;
-  }
-
-  ul.actions li:first-child {
-    margin-top: 0;
-  }
-
-  ul.menu {
-    height: auto;
-    text-align: center;
-  }
-
-  ul.menu li {
-    display: block;
-    border: 0;
-    padding: 0.75em 0 0 0;
-    margin: 0;
-  }
-
-  ul.menu li:first-child {
-    padding-top: 0;
   }
 
   ul.icons {
@@ -2677,31 +2644,8 @@ body.homepage .header h1 {
     width: 2.25em;
   }
 
-  input[type="button"],
-  input[type="submit"],
-  input[type="reset"],
-  button,
-  .button {
-    display: block;
-    padding: 0;
-    line-height: 3em;
-    width: 100%;
-  }
-
-  body.navPanel-visible #page-wrapper {
-    -moz-transform: translateY(50vh);
-    -webkit-transform: translateY(50vh);
-    -ms-transform: translateY(50vh);
-    transform: translateY(50vh);
-  }
-
   .wrapper {
     padding: 3em 1em 3em 1em;
-  }
-
-  .header {
-    background-attachment: scroll;
-    padding: 2.5em 0 0 0;
   }
 
   .header .inner {
@@ -2723,22 +2667,12 @@ body.homepage .header h1 {
     margin-bottom: 2.5em;
   }
 
-  body.homepage .header {
-    min-height: 0;
-    padding: 5.5em 0 5em 0;
-    height: auto;
-  }
-
   body.homepage .header h1 {
     font-size: 2.5em;
   }
 
   #banner {
     padding: 3em 2em 3em 2em;
-  }
-
-  #sidebar > hr:first-of-type {
-    display: block;
   }
 
   #main > header {
