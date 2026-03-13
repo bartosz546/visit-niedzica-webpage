@@ -66,3 +66,9 @@
     opacity: 0;
   }
 }
+
+@media screen and (max-width: 736px) {
+  .header h1 {
+    font-size: 2em;
+  }
+}
