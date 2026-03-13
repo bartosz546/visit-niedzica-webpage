@@ -1,0 +1,16 @@
+<div class="header">
+  <div class="video-background">
+    <video #backgroundVideoPlayer class="landing-page-parallax-background" muted playsinline preload="auto"></video>
+    <video #nextPlayer muted playsinline preload="auto" style="display:none"></video>
+    <div #fadeLayer class="fade-layer"></div>
+  </div>
+
+  <div class="header-message-container">
+    <div class="inner fade-on-top header-message">
+      <header>
+        <h1 [innerHTML]="header"></h1>
+        <p class="header-small-message">{{ subheader }}</p>
+      </header>
+    </div>
+  </div>
+</div>

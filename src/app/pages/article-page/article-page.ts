@@ -3,17 +3,16 @@ import {
   Component,
   ElementRef,
   OnDestroy,
-  OnInit,
   Renderer2,
   ViewChild,
 } from '@angular/core';
 import {
-  ParallaxImageScrollSection
-} from '../../component/parallax-image-scroll-section/parallax-image-scroll-section';
+  ParallaxVideoScrollSection
+} from '../../component/parallax-video-scroll-section/parallax-video-scroll-section';
 
 @Component({
   selector: 'app-article-page',
-  imports: [ParallaxImageScrollSection],
+  imports: [ParallaxVideoScrollSection],
   templateUrl: './article-page.html',
   styleUrl: './article-page.css',
 })
@@ -22,6 +21,15 @@ export class ArticlePage implements AfterViewInit, OnDestroy {
   @ViewChild('revealElement2') revealElement2!: ElementRef<HTMLElement>;
 
   private observer: IntersectionObserver | undefined;
+
+  readonly videos1 = [
+    'assets/videos/niedzica-footage-3.mp4',
+    'assets/videos/niedzica-footage-2.mp4',
+  ];
+
+  readonly videos2 = [
+    'assets/videos/niedzica-footage-1.mp4',
+  ];
 
   constructor(private renderer: Renderer2) {}
 

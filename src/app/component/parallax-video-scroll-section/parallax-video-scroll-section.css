@@ -1,0 +1,78 @@
+.video-background {
+  position: sticky;
+  top: 0;
+  height: 110vh;
+  overflow: hidden;
+}
+
+.landing-page-parallax-background {
+  width: 195.5vh;
+  height: 110vh;
+  min-width: 100vw;
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  border-top: 1px solid white;
+  overflow: hidden;
+}
+
+.header-message-container {
+  position: absolute;
+  text-align: center;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+.header-message {
+  background: #fffffff0;
+  border-radius: 10px;
+  padding: 32px;
+  color: #000;
+  top: 45%;
+  transform: translateY(-50%);
+  font-weight: 600;
+}
+
+.header-small-message {
+  margin: 1em 0 0;
+}
+
+.fade-layer {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 500ms ease;
+}
+
+.fade-layer.visible {
+  opacity: 1;
+}
+
+@supports (animation-timeline: view()) {
+  .fade-on-top {
+    animation: fadeOut linear forwards;
+    animation-duration: 1s;
+    animation-range: entry 10% exit 10%;
+    animation-timeline: view();
+    opacity: 1;
+  }
+}
+
+.header {
+  height: 175vh;
+  position: relative;
+}
+
+@keyframes fadeOut {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

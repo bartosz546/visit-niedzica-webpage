@@ -1,20 +1,8 @@
-<div class="header">
-  <div class="video-background">
-    <video #backgroundVideoPlayer class="landing-page-parallax-background" muted playsinline preload="auto"></video>
-    <video #nextPlayer muted playsinline preload="auto" style="display:none"></video>
-    <div #fadeLayer class="fade-layer"></div>
-    /
-  </div>
-
-  <div class="header-message-container">
-    <div class="inner fade-on-top header-message">
-      <header>
-        <h1>Odkryj Historię <br> Pełną Legend</h1>
-        <p class="header-small-message">Witaj w Pieninach</p>
-      </header>
-    </div>
-  </div>
-</div>
+<app-parallax-video-scroll-section
+  [videos]="videos"
+  header="Odkryj Historię <br> Pełną Legend"
+  subheader="Witaj w Pieninach">
+</app-parallax-video-scroll-section>
 
 <section id="banner">
   <header>
