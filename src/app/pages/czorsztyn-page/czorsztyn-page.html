@@ -1,0 +1,21 @@
+<div class="page-wrapper">
+  <app-parallax-image-scroll-section
+    imageSrc="assets/images/czorsztyn-upsized.jpg"
+    header="Odkryj miasta regionu"
+    subheader="Witaj w Czorsztynie">
+  </app-parallax-image-scroll-section>
+
+  <div class="map-header">
+    <header>
+      <h2>
+        <strong>
+          Mapa Czorsztyna
+        </strong>
+      </h2>
+    </header>
+  </div>
+
+  <div class="map-wrapper">
+    <app-map-view [mapData]="mapData"></app-map-view>
+  </div>
+</div>

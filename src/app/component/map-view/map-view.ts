@@ -34,7 +34,11 @@ export class MapViewComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    Utils.assignHierarchicalIds(this.mapData);
     this.visibleMarkers = this.getAllNodesFlattened(this.mapData);
+    if(this.mapData.length === 1) {
+      this.mapData[0].isExpanded = true;
+    }
   }
 
   onMapLoad(event: any) {

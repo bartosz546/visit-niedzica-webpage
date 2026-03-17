@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MapViewComponent } from '../../component/map-view/map-view';
 import { ParallaxImageScrollSection } from '../../component/parallax-image-scroll-section/parallax-image-scroll-section';
 import { MapNode } from '../../component/map-view/MapNode';
-import { Utils } from '../../Utils';
 
 @Component({
   selector: 'app-map',
@@ -99,6 +98,5 @@ export class MapPage {
   ];
 
   constructor() {
-    Utils.assignHierarchicalIds(this.mapData);
   }
 }
